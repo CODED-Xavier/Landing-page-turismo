@@ -1,0 +1,506 @@
+/* =========================================
+   1. Variáveis e Reset Base
+   ========================================= */
+:root {
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1ece4;
+  --color-primary: #0f3d56;
+  --color-primary-dark: #09283a;
+  --color-accent: #d95d39;
+  --color-accent-hover: #be4b2a;
+  --color-text: #1e293b;
+  --color-text-muted: #475569;
+  --color-border: #e2dcd2;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-sm: 0 4px 14px rgba(15, 61, 86, 0.06);
+  --shadow-md: 0 12px 30px rgba(15, 61, 86, 0.12);
+  --transition: 0.25s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================
+   2. Utilitários de Layout e Tipografia
+   ========================================= */
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: 5rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.65rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+}
+
+.section-header {
+  max-width: 640px;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.section-header p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+/* =========================================
+   3. Cabeçalho e Navegação
+   ========================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 4.75rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.brand strong {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--color-primary-dark);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-list a {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  transition: color var(--transition);
+}
+
+.nav-list a:hover {
+  color: var(--color-accent);
+}
+
+/* =========================================
+   4. Seção Hero
+   ========================================= */
+.hero {
+  padding-block: 4.5rem 5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.25rem, 4vw, 3.35rem);
+  margin-bottom: 1.25rem;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  max-width: 54ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface-alt);
+}
+
+.hero-figure {
+  background: linear-gradient(135deg, #0f3d56, #1d6f8a);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+
+.hero-figure figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: #ffffff;
+  background: linear-gradient(to top, rgba(9, 40, 58, 0.85), transparent);
+}
+
+/* =========================================
+   5. Cards de Destinos
+   ========================================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.destination-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-media {
+  height: 220px;
+  overflow: hidden;
+}
+
+/* Gradientes de apoio caso as imagens locais ainda não tenham sido adicionadas */
+.media-recife {
+  background: linear-gradient(135deg, #1b4965, #5fa8d3);
+}
+
+.media-olinda {
+  background: linear-gradient(135deg, #d95d39, #f39c6b);
+}
+
+.media-porto {
+  background: linear-gradient(135deg, #0d7377, #32e0c4);
+}
+
+.card-body {
+  padding: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-location {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.card-body h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-body p {
+  color: var(--color-text-muted);
+  font-size: 0.96rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.tag-list li {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: var(--color-surface-alt);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+/* =========================================
+   6. Destaque Cultural e Roteiro
+   ========================================= */
+.featured {
+  background-color: var(--color-surface-alt);
+  border-block: 1px solid var(--color-border);
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+  gap: 3rem;
+}
+
+.featured-content h2 {
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  margin-bottom: 1rem;
+}
+
+.featured-content > p {
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.info-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.info-item {
+  background-color: var(--color-surface);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-accent);
+}
+
+.info-item dt {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-primary-dark);
+}
+
+.info-item dd {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.featured-card {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.featured-card h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.itinerary-list {
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.itinerary-list li {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.itinerary-list strong {
+  color: #ffffff;
+}
+
+/* =========================================
+   7. Dicas de Planejamento
+   ========================================= */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.tip-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+
+.tip-box h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.tip-box p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   8. Rodapé
+   ========================================= */
+.site-footer {
+  background-color: var(--color-primary-dark);
+  color: #cbd5e1;
+  padding-block: 2.75rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-footer strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.footer-contact {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   9. Responsividade
+   ========================================= */
+@media (max-width: 860px) {
+  .hero-grid,
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-block: 3rem 3.5rem;
+  }
+
+  .section {
+    padding-block: 3.75rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .header-content {
+    flex-direction: column;
+    padding-block: 0.85rem;
+  }
+
+  .nav-list {
+    gap: 1.15rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
